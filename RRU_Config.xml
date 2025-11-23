@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+
+  <!-- =====================
+       GENERAL CONFIGURATION
+       ===================== -->
+  <General>
+    <Frequency>2600</Frequency>          <!-- MHz -->
+    <PowerDBm>50</PowerDBm>              <!-- dBm -->
+    <Bandwidth>100</Bandwidth>           <!-- MHz -->
+    <RRUSN>RUEVT2_</RRUSN>
+  </General>
+
+  <!-- =====================
+       TEST CLAUSE DEFINITION
+       ===================== -->
+  <TestClause>
+    <Clause>
+      <Name>TX Power</Name>
+      <Spec>40</Spec>
+      <Min>37</Min>
+      <Max>43</Max>
+    </Clause>
+
+    <Clause>
+      <Name>ACLR</Name>
+      <Spec>-45</Spec>
+      <Min>-40</Min>
+      <Max>-60</Max>
+    </Clause>
+
+    <Clause>
+      <Name>EVM</Name>
+      <Spec>2.5</Spec>
+      <Min>0</Min>
+      <Max>3.0</Max>
+    </Clause>
+  </TestClause>
+
+  <!-- =====================
+       PORT LIST
+       ===================== -->
+  <PortList>
+    <Port>P1</Port>
+    <Port>P2</Port>
+    <Port>P3</Port>
+    <Port>P4</Port>
+    <Port>P5</Port>
+    <Port>P6</Port>
+    <Port>P7</Port>
+    <Port>P8</Port>
+  </PortList>
+
+</Config>
