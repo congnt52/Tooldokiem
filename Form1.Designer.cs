@@ -106,13 +106,17 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.tabConfig = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPathConfig = new System.Windows.Forms.Button();
+            this.btnConfigPath = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtConfigPath = new System.Windows.Forms.TextBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.rtbXmlPreview = new System.Windows.Forms.RichTextBox();
             this.btnLoadConfig = new System.Windows.Forms.Button();
             this.txtRRU = new System.Windows.Forms.TextBox();
             this.txtBw = new System.Windows.Forms.TextBox();
             this.txtPowerdBm = new System.Windows.Forms.TextBox();
             this.txtFreq = new System.Windows.Forms.TextBox();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabMea.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -922,6 +926,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnPathConfig);
+            this.panel1.Controls.Add(this.btnConfigPath);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtConfigPath);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.rtbXmlPreview);
             this.panel1.Controls.Add(this.btnLoadConfig);
@@ -935,17 +943,66 @@
             this.panel1.Size = new System.Drawing.Size(1286, 601);
             this.panel1.TabIndex = 0;
             // 
+            // btnPathConfig
+            // 
+            this.btnPathConfig.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPathConfig.Location = new System.Drawing.Point(417, 39);
+            this.btnPathConfig.Name = "btnPathConfig";
+            this.btnPathConfig.Size = new System.Drawing.Size(24, 20);
+            this.btnPathConfig.TabIndex = 10;
+            this.btnPathConfig.Text = "...";
+            this.btnPathConfig.UseVisualStyleBackColor = true;
+            this.btnPathConfig.Click += new System.EventHandler(this.btnPathConfig_Click);
+            // 
+            // btnConfigPath
+            // 
+            this.btnConfigPath.Location = new System.Drawing.Point(474, 38);
+            this.btnConfigPath.Name = "btnConfigPath";
+            this.btnConfigPath.Size = new System.Drawing.Size(116, 23);
+            this.btnConfigPath.TabIndex = 9;
+            this.btnConfigPath.Text = "Load Config Path";
+            this.btnConfigPath.UseVisualStyleBackColor = true;
+            this.btnConfigPath.Click += new System.EventHandler(this.btnConfigPath_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "ConfigPath";
+            // 
+            // txtConfigPath
+            // 
+            this.txtConfigPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfigPath.Location = new System.Drawing.Point(84, 36);
+            this.txtConfigPath.Name = "txtConfigPath";
+            this.txtConfigPath.Size = new System.Drawing.Size(367, 26);
+            this.txtConfigPath.TabIndex = 7;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(245, 338);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // rtbXmlPreview
             // 
-            this.rtbXmlPreview.Location = new System.Drawing.Point(482, 36);
+            this.rtbXmlPreview.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rtbXmlPreview.Location = new System.Drawing.Point(613, 0);
             this.rtbXmlPreview.Name = "rtbXmlPreview";
-            this.rtbXmlPreview.Size = new System.Drawing.Size(609, 458);
+            this.rtbXmlPreview.Size = new System.Drawing.Size(673, 601);
             this.rtbXmlPreview.TabIndex = 5;
             this.rtbXmlPreview.Text = "";
             // 
             // btnLoadConfig
             // 
-            this.btnLoadConfig.Location = new System.Drawing.Point(308, 119);
+            this.btnLoadConfig.Location = new System.Drawing.Point(245, 300);
             this.btnLoadConfig.Name = "btnLoadConfig";
             this.btnLoadConfig.Size = new System.Drawing.Size(75, 23);
             this.btnLoadConfig.TabIndex = 4;
@@ -955,41 +1012,31 @@
             // 
             // txtRRU
             // 
-            this.txtRRU.Location = new System.Drawing.Point(164, 185);
+            this.txtRRU.Location = new System.Drawing.Point(44, 530);
             this.txtRRU.Name = "txtRRU";
             this.txtRRU.Size = new System.Drawing.Size(100, 20);
             this.txtRRU.TabIndex = 3;
             // 
             // txtBw
             // 
-            this.txtBw.Location = new System.Drawing.Point(164, 139);
+            this.txtBw.Location = new System.Drawing.Point(44, 484);
             this.txtBw.Name = "txtBw";
             this.txtBw.Size = new System.Drawing.Size(100, 20);
             this.txtBw.TabIndex = 2;
             // 
             // txtPowerdBm
             // 
-            this.txtPowerdBm.Location = new System.Drawing.Point(164, 96);
+            this.txtPowerdBm.Location = new System.Drawing.Point(44, 441);
             this.txtPowerdBm.Name = "txtPowerdBm";
             this.txtPowerdBm.Size = new System.Drawing.Size(100, 20);
             this.txtPowerdBm.TabIndex = 1;
             // 
             // txtFreq
             // 
-            this.txtFreq.Location = new System.Drawing.Point(164, 53);
+            this.txtFreq.Location = new System.Drawing.Point(44, 398);
             this.txtFreq.Name = "txtFreq";
             this.txtFreq.Size = new System.Drawing.Size(100, 20);
             this.txtFreq.TabIndex = 0;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(308, 170);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btnUpdate.TabIndex = 6;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Form1
             // 
@@ -999,6 +1046,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "TOOL ĐO KIỂM";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabMea.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -1107,6 +1155,10 @@
         private System.Windows.Forms.TextBox txtPowerdBm;
         private System.Windows.Forms.TextBox txtFreq;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtConfigPath;
+        private System.Windows.Forms.Button btnConfigPath;
+        private System.Windows.Forms.Button btnPathConfig;
     }
 }
 

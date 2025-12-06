@@ -31,22 +31,14 @@ namespace ToolDo
 
         }
         private bool xmlLoaded = false;
-        private string currentFilePath = "";
+       
         private void btnLoadConfig_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "XML Files|*.xml";
-
-            if (open.ShowDialog() == DialogResult.OK)
-            {
-                string xml = File.ReadAllText(open.FileName);
-                rtbXmlPreview.Text = xml;
-
-                LoadXmlToTextbox(xml);
-                LoadXmlToTreeView(xml);
-                xmlLoaded = true;
-            }
+                      
         }
+        
+
+
         private void LoadXmlToTextbox(string xml)
         {
             XDocument doc = XDocument.Parse(xml);
@@ -54,12 +46,21 @@ namespace ToolDo
             txtFreq.Text = doc.Root
                 .Element("General")
                 .Element("Frequency").Value.Replace("MHz", "").Trim();
+            txtFrequency.Text = doc.Root
+                .Element("General")
+                .Element("Frequency").Value.Replace("MHz", "").Trim();
 
             txtPowerdBm.Text = doc.Root
                 .Element("General")
                 .Element("PowerDBm").Value.Replace("dBm", "").Trim();
+            txtPower.Text = doc.Root
+                .Element("General")
+                .Element("PowerDBm").Value.Replace("dBm", "").Trim();
 
             txtBw.Text = doc.Root
+                .Element("General")
+                .Element("Bandwidth").Value.Replace("MHz", "").Trim();
+            textBandwidth.Text = doc.Root
                 .Element("General")
                 .Element("Bandwidth").Value.Replace("MHz", "").Trim();
 
@@ -116,40 +117,47 @@ namespace ToolDo
 
         }
 
-        //  private XDocument doc;
-        //private void LoadConfigFromXml(string path)
-        //{
-        //    XDocument doc = XDocument.Load(path);
+        private void btnConfigPath_Click(object sender, EventArgs e)
+        {
+            string fileConfigPath = txtConfigPath.Text;
+            string xml = File.ReadAllText(fileConfigPath);
+            rtbXmlPreview.Text = xml;
+            LoadXmlToTextbox(xml);
+            LoadXmlToTreeView(xml);
+            xmlLoaded = true;
+        }
 
-        //    var general = doc.Root.Element("General");
 
-        //    txtFreq.Text = general.Element("Frequency").Value;
-        //    txtPowerdBm.Text = general.Element("PowerDBm").Value;
-        //    txtPowerMw.Text = general.Element("PowerMW").Value;
-        //    txtBw.Text = general.Element("Bandwidth").Value;
-        //    txtRRU.Text = general.Element("RRUSN").Value;
+        private void btnPathConfig_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
+            ofd.Title = "Chọn file config";
 
-        //     Load danh sách Ports
-        //    var ports = doc.Root.Element("PortList").Elements("Port").Select(x => x.Value).ToList();
-        //    LoadPortCheckboxList(ports);
-        //}
+            // Nếu đã từng chọn file trước đó → mở lại đúng folder
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.ConfigFilePath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(Properties.Settings.Default.ConfigFilePath);
+                ofd.FileName = Path.GetFileName(Properties.Settings.Default.ConfigFilePath);
+            }
 
-        //private void btnUpdate_Click(object sender, EventArgs e)
-        //{
-        //    if (doc == null)
-        //    {
-        //        MessageBox.Show("Chưa load file XML!");
-        //        return;
-        //    }
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                // Lấy đường dẫn đầy đủ
+                string filePath = ofd.FileName;
 
-        //    var general = doc.Root.Element("General");
-        //    general.Element("Frequency").Value = txtFreq.Text;
-        //    general.Element("PowerDBm").Value = txtPowerdBm.Text;
-        //    general.Element("Bandwidth").Value = txtBw.Text;
-        //    general.Element("RRUSN").Value = txtRRU.Text;
+                // Hiện lên textbox
+                txtConfigPath.Text = filePath;
 
-        //    // Cập nhật view
-        //    rtbXmlPreview.Text = doc.ToString();
-        //}
+                // Lưu lại vào Settings
+                Properties.Settings.Default.ConfigFilePath = filePath;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            txtConfigPath.Text = Properties.Settings.Default.ConfigFilePath;
+        }
     }
 }
